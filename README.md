@@ -16,6 +16,32 @@ Swagger UI: http://localhost:8080/swagger-ui.html
 
 
 ## 🧩 1. Contexto Escolhido
+Opção 1: Este FiadoPay funciona como um PSP simulado, permitindo que lojas criem pagamentos, acompanhem seu status e recebam webhooks, mas agora com uma arquitetura flexível e extensível via plugins.
+A refatoração exigida pelo professor inclui:
+- Anotações para métodos de pagamento, regras antifraude e webhooks
+- Descoberta dinâmica por reflexão
+- Execução assíncrona
+- Manutenção das rotas originais
+- Sem dependência da IDE
+
+## 🧠 2. Decisões de Design (Arquitetura)
+✔ Arquitetura por Plugins (Strategy + Reflection)
+Criamos handlers para métodos de pagamento com anotação:
+@PaymentMethod(type="CARD", supportsInstallments=true)
+✔ AntiFraude Modular
+Regras isoladas, anotadas e descobertas automaticamente:
+@AntiFraud(name="HighAmount", threshold=5000)
+✔ Webhooks desacoplados
+Enviadores de webhook são plugins com:
+@WebhookSink(eventType="payment.updated")
+✔ Processamento Assíncrono Real
+Substituímos Thread.sleep() por:
+ExecutorService executor = Executors.newFixedThreadPool(10);
+✔ SRP + Clean Architecture
+- PaymentService = orquestração
+- Handlers = lógica isolada
+- Registry = descoberta automática
+- WebhookDispatcher = lado externo
 
 
 ## 🔄 9. Fluxo
