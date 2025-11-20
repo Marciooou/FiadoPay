@@ -49,6 +49,97 @@ ExecutorService executor = Executors.newFixedThreadPool(10);
 - Registry = descoberta automática
 - WebhookDispatcher = lado externo
 
+## 🏷️ 3. Anotações Criadas (e Metadados)
+🔹 @PaymentMethod
+Define um método de pagamento (CARD, PIX, BOLETO, DEBIT).
+Campos:
+- type
+- supportsInstallments
+
+🔹 @AntiFraud
+Regra antifraude plugável.
+Campos:
+- name
+- threshold
+- order
+
+🔹 @WebhookSink
+Para identificar handlers de envio de webhook.
+Campos:
+- eventType
+
+## 🔍 4. Mecanismo de Reflexão
+O Spring escaneia o classpath e registra automaticamente:
+- Handlers de pagamento
+- Regras antifraude
+- Sinks de webhook
+
+Exemplo:
+var beans = context.getBeansWithAnnotation(PaymentMethod.class);
+Isso permite adicionar novos comportamentos sem alterar o PaymentService.
+
+## ⚙️ 5. Threads (ExecutorService)
+O processamento é assíncrono e concorrente:
+executor.submit(() -> processPayment(paymentId));
+
+Benefícios:
+- Pagamentos não travam requisições
+- Webhooks enviados em paralelo
+- Mantém a API responsiva
+
+## 🧱 6. Padrões Aplicados
+Padrão                          Onde foi aplicado
+Strategy                        Payment handlers, antifraud rules, webhook sinks
+Plugin Architecture             Via anotações + reflexão
+SRP                             Serviços isolados
+Factory por Reflexão            Registry carregando handlers                                                                                      
+Template Method                 Ordem de execução antifraude
+
+⚠️ 7. Limites Conhecidos
+Banco H2 em memória (não persiste após restart)
+
+
+Webhooks não fazem retry após reiniciar o app
+
+
+Autenticação é fake (exigência do contrato)
+
+
+Sem fila externa (Kafka/Rabbit)
+
+
+AntiFraud simples (limite numérico)
+
+
+
+📸 8. Evidências (Prints)
+Recomendação: coloque os arquivos em:
+docs/prints/
+
+Prints esperados:
+Aplicação rodando + Swagger
+
+
+Merchant criado
+
+
+Token gerado
+
+
+Pagamento criado
+
+
+Pagamento aprovado/recusado (assíncrono)
+
+
+H2 Console mostrando tabelas
+
+
+WEBHOOK_DELIVERY com assinatura
+
+
+AntiFraud aplicando recusa
+
 
 ## 🔄 9. Fluxo
 
