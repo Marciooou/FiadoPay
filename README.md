@@ -88,8 +88,11 @@ Benefícios:
 - Mantém a API responsiva
 
 ## 🧱 6. Padrões Aplicados
-Padrão                          Onde foi aplicado
-Strategy                        Payment handlers, antifraud rules, webhook sinks
+
+<table> <thead> <tr> <th style="text-align:left;">Padrão</th> <th style="text-align:left;">Onde foi aplicado</th> </tr> </thead> <tbody> <tr> <td><strong>Strategy</strong></td> <td>Handlers de pagamento, regras antifraude e sinks de webhook</td> </tr> <tr> <td><strong>Plugin Architecture</strong></td> <td>Uso de anotações + reflexão para carregar dinamicamente módulos</td> </tr> <tr> <td><strong>SRP (Single Responsibility Principle)</strong></td> <td>Serviços isolados para cada responsabilidade core</td> </tr> <tr> <td><strong>Factory via Reflexão</strong></td> <td>Registries localizam e instanciam plugins no startup</td> </tr> <tr> <td><strong>Template Method</strong></td> <td>Execução ordenada das regras antifraude</td> </tr> </tbody> </table>
+
+
+O Strategy foi aplicado em Payment handlers, antifraud rules, webhook sinks
 Plugin Architecture             Via anotações + reflexão
 SRP                             Serviços isolados
 Factory por Reflexão            Registry carregando handlers                                                                                      
