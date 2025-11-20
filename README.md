@@ -1,9 +1,9 @@
 # FiadoPay Simulator (Spring Boot + H2)
 
-Gateway de pagamento **FiadoPay** para a AVI/POOA.
-Substitui PSPs reais com um backend em memória (H2).
+Gateway de pagamento FiadoPay, utilizado na disciplina de AVI/POOA, refatorado com foco em engenharia, anotações customizadas, reflexão, plugins, processamento assíncrono, boa arquitetura e manutenção do contrato da API original.
+Substitui PSPs reais com um backend simples em memória (H2).
 
-## Rodar
+## 🚀 Como Rodar
 ```bash
 ./mvnw spring-boot:run
 # ou
@@ -11,9 +11,14 @@ mvn spring-boot:run
 ```
 
 H2 console: http://localhost:8080/h2  
+JDBC: jdbc:h2:mem:fiadopay
 Swagger UI: http://localhost:8080/swagger-ui.html
 
-## Fluxo
+
+## 🧩 1. Contexto Escolhido
+
+
+## 🔄 9. Fluxo
 
 1) **Cadastrar merchant**
 ```bash
