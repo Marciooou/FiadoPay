@@ -91,58 +91,30 @@ Benefícios:
 
 <table> <thead> <tr> <th style="text-align:left;">Padrão</th> <th style="text-align:left;">Onde foi aplicado</th> </tr> </thead> <tbody> <tr> <td><strong>Strategy</strong></td> <td>Handlers de pagamento, regras antifraude e sinks de webhook</td> </tr> <tr> <td><strong>Plugin Architecture</strong></td> <td>Uso de anotações + reflexão para carregar dinamicamente módulos</td> </tr> <tr> <td><strong>SRP (Single Responsibility Principle)</strong></td> <td>Serviços isolados para cada responsabilidade core</td> </tr> <tr> <td><strong>Factory via Reflexão</strong></td> <td>Registries localizam e instanciam plugins no startup</td> </tr> <tr> <td><strong>Template Method</strong></td> <td>Execução ordenada das regras antifraude</td> </tr> </tbody> </table>
 
+## ⚠️ 7. Limites Conhecidos
+- Banco H2 em memória (não persiste após restart)
+- Webhooks não fazem retry após reiniciar o app
+- Autenticação é fake (exigência do contrato)
+- Sem fila externa (Kafka/Rabbit)
+- AntiFraud simples (limite numérico)
 
-O Strategy foi aplicado em Payment handlers, antifraud rules, webhook sinks
-Plugin Architecture             Via anotações + reflexão
-SRP                             Serviços isolados
-Factory por Reflexão            Registry carregando handlers                                                                                      
-Template Method                 Ordem de execução antifraude
-
-⚠️ 7. Limites Conhecidos
-Banco H2 em memória (não persiste após restart)
-
-
-Webhooks não fazem retry após reiniciar o app
-
-
-Autenticação é fake (exigência do contrato)
-
-
-Sem fila externa (Kafka/Rabbit)
-
-
-AntiFraud simples (limite numérico)
-
-
-
-📸 8. Evidências (Prints)
+## 📸 8. Evidências (Prints)
 Recomendação: coloque os arquivos em:
 docs/prints/
 
 Prints esperados:
-Aplicação rodando + Swagger
+1. Aplicação rodando + Swagger
+2. Merchant criado
+3. Token gerado
+4. Pagamento criado
+5. Pagamento aprovado/recusado (assíncrono)
+6. H2 Console mostrando tabelas
+7. WEBHOOK_DELIVERY com assinatura
+8. AntiFraud aplicando recusa
 
-
-Merchant criado
-
-
-Token gerado
-
-
-Pagamento criado
-
-
-Pagamento aprovado/recusado (assíncrono)
-
-
-H2 Console mostrando tabelas
-
-
-WEBHOOK_DELIVERY com assinatura
-
-
-AntiFraud aplicando recusa
-
+```bash
+docs/prints/https://docs.google.com/document/d/1Xe_ZLAoDAWCvvPXVkDJlhoo15_gaqNaz4i-PS3UdK2s/edit?usp=sharing)
+```
 
 ## 🔄 9. Fluxo
 
