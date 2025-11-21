@@ -113,7 +113,7 @@ Prints esperados:
 8. AntiFraud aplicando recusa
 
 ```bash
-docs/prints/https://docs.google.com/document/d/1Xe_ZLAoDAWCvvPXVkDJlhoo15_gaqNaz4i-PS3UdK2s/edit?usp=sharing)
+https://docs.google.com/document/d/1Xe_ZLAoDAWCvvPXVkDJlhoo15_gaqNaz4i-PS3UdK2s/edit?usp=sharing)
 ```
 
 ## 🔄 9. Fluxo
