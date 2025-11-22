@@ -14,6 +14,12 @@ H2 console: http://localhost:8080/h2
 JDBC: jdbc:h2:mem:fiadopay
 Swagger UI: http://localhost:8080/swagger-ui.html
 
+## 👥 Integrantes da Equipe ✍️
+- [Márcio Augusto Silva Ramos Filho]
+- [Guilherme da Vitoria Souza da Silva]
+- [Carlos Murilo dos Santos Nery]
+- [Davi Moreira Lima]
+- [Nilo Calvin Vieira Dos Santos]
 
 ## 🧩 1. Contexto Escolhido
 Opção 1: Este FiadoPay funciona como um PSP simulado, permitindo que lojas criem pagamentos, acompanhem seu status e recebam webhooks, mas agora com uma arquitetura flexível e extensível via plugins.
