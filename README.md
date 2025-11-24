@@ -9,7 +9,6 @@ Substitui PSPs reais com um backend simples em memória (H2).
 # ou
 mvn spring-boot:run
 ```
-
 H2 console: http://localhost:8080/h2  
 JDBC: jdbc:h2:mem:fiadopay
 Swagger UI: http://localhost:8080/swagger-ui.html
@@ -23,7 +22,6 @@ Swagger UI: http://localhost:8080/swagger-ui.html
 
 ## 🧩 1. Contexto Escolhido
 Opção 1: Este FiadoPay funciona como um PSP simulado, permitindo que lojas criem pagamentos, acompanhem seu status e recebam webhooks, mas agora com uma arquitetura flexível e extensível via plugins.
-
 A refatoração exigida pelo professor inclui:
 - Anotações para métodos de pagamento, regras antifraude e webhooks
 - Descoberta dinâmica por reflexão
@@ -32,7 +30,6 @@ A refatoração exigida pelo professor inclui:
 - Sem dependência da IDE
 
 ## 🧠 2. Decisões de Design (Arquitetura)
-
 ✔ Arquitetura por Plugins (Strategy + Reflection)
 Criamos handlers para métodos de pagamento com anotação:
 @PaymentMethod(type="CARD", supportsInstallments=true)
@@ -57,7 +54,6 @@ ExecutorService executor = Executors.newFixedThreadPool(10);
 - WebhookDispatcher = lado externo
 
 ## 🏷️ 3. Anotações Criadas (e Metadados)
-
 🔹 @PaymentMethod
 Define um método de pagamento (CARD, PIX, BOLETO, DEBIT).
 Campos:
@@ -89,14 +85,12 @@ Isso permite adicionar novos comportamentos sem alterar o PaymentService.
 ## ⚙️ 5. Threads (ExecutorService)
 O processamento é assíncrono e concorrente:
 executor.submit(() -> processPayment(paymentId));
-
 Benefícios:
 - Pagamentos não travam requisições
 - Webhooks enviados em paralelo
 - Mantém a API responsiva
 
 ## 🧱 6. Padrões Aplicados
-
 <table> <thead> <tr> <th style="text-align:left;">Padrão</th> <th style="text-align:left;">Onde foi aplicado</th> </tr> </thead> <tbody> <tr> <td><strong>Strategy</strong></td> <td>Handlers de pagamento, regras antifraude e sinks de webhook</td> </tr> <tr> <td><strong>Plugin Architecture</strong></td> <td>Uso de anotações + reflexão para carregar dinamicamente módulos</td> </tr> <tr> <td><strong>SRP (Single Responsibility Principle)</strong></td> <td>Serviços isolados para cada responsabilidade core</td> </tr> <tr> <td><strong>Factory via Reflexão</strong></td> <td>Registries localizam e instanciam plugins no startup</td> </tr> <tr> <td><strong>Template Method</strong></td> <td>Execução ordenada das regras antifraude</td> </tr> </tbody> </table>
 
 ## ⚠️ 7. Limites Conhecidos
