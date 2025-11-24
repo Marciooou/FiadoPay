@@ -1,6 +1,7 @@
 # FiadoPay Simulator (Spring Boot + H2)
 
 Gateway de pagamento FiadoPay, utilizado na disciplina de AVI/POOA, refatorado com foco em engenharia, anotações customizadas, reflexão, plugins, processamento assíncrono, boa arquitetura e manutenção do contrato da API original.
+
 Substitui PSPs reais com um backend simples em memória (H2).
 
 ## 🚀 Como Rodar
@@ -23,6 +24,7 @@ Swagger UI: http://localhost:8080/swagger-ui.html
 
 ## 🧩 1. Contexto Escolhido
 Opção 1: Este FiadoPay funciona como um PSP simulado, permitindo que lojas criem pagamentos, acompanhem seu status e recebam webhooks, mas agora com uma arquitetura flexível e extensível via plugins.
+
 A refatoração exigida pelo professor inclui:
 - Anotações para métodos de pagamento, regras antifraude e webhooks
 - Descoberta dinâmica por reflexão
@@ -56,6 +58,7 @@ ExecutorService executor = Executors.newFixedThreadPool(10);
 - WebhookDispatcher = lado externo
 
 ## 🏷️ 3. Anotações Criadas (e Metadados)
+
 🔹 @PaymentMethod
 Define um método de pagamento (CARD, PIX, BOLETO, DEBIT).
 Campos:
