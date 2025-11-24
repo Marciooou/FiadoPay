@@ -1,7 +1,6 @@
 # FiadoPay Simulator (Spring Boot + H2)
 
 Gateway de pagamento FiadoPay, utilizado na disciplina de AVI/POOA, refatorado com foco em engenharia, anotações customizadas, reflexão, plugins, processamento assíncrono, boa arquitetura e manutenção do contrato da API original.
-
 Substitui PSPs reais com um backend simples em memória (H2).
 
 ## 🚀 Como Rodar
