@@ -10,9 +10,7 @@ Substitui PSPs reais com um backend simples em memória (H2).
 mvn spring-boot:run
 ```
 - H2 console: http://localhost:8080/h2
-- 
 - JDBC: jdbc:h2:mem:fiadopay
-- 
 - Swagger UI: http://localhost:8080/swagger-ui.html
 
 ## 👥 Integrantes da Equipe ✍️
